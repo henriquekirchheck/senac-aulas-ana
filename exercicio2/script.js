@@ -1,0 +1,26 @@
+// @ts-check
+const params = new URLSearchParams(window.location.search);
+
+const nameEl = /** @type {HTMLSpanElement} */ (document.querySelector("#name"))
+const emailEl = /** @type {HTMLSpanElement} */ (document.querySelector("#email"))
+const phoneEl = /** @type {HTMLSpanElement} */ (document.querySelector("#phone"))
+const cepEl = /** @type {HTMLSpanElement} */ (document.querySelector("#cep"))
+const addressEl = /** @type {HTMLSpanElement} */ (document.querySelector("#address"))
+const numberEl = /** @type {HTMLSpanElement} */ (document.querySelector("#number"))
+const referenceEl = /** @type {HTMLSpanElement} */ (document.querySelector("#reference"))
+const neighborhoodEl = /** @type {HTMLSpanElement} */ (document.querySelector("#neighborhood"))
+const cityEl = /** @type {HTMLSpanElement} */ (document.querySelector("#city"))
+const stateEl = /** @type {HTMLSpanElement} */ (document.querySelector("#state"))
+const messageEl = /** @type {HTMLSpanElement} */ (document.querySelector("#message"))
+
+nameEl.textContent = params.get("name")
+emailEl.textContent = params.get("email")
+phoneEl.textContent = params.get("phone")
+cepEl.textContent = params.get("cep")
+addressEl.textContent = params.get("address")
+numberEl.textContent = params.get("number")
+referenceEl.textContent = params.get("reference")
+neighborhoodEl.textContent = params.get("neighborhood")
+cityEl.textContent = params.get("city")
+stateEl.textContent = params.get("state")
+messageEl.textContent = params.get("message")

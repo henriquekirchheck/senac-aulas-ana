@@ -1,0 +1,7 @@
+input:user-invalid {
+    border: red dashed;
+}
+form {
+    display: flex;
+    flex-direction: column;
+}
