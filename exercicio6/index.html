@@ -10,8 +10,8 @@
     <script>
       const idade = parseInt(prompt("Digite sua idade"));
       switch (true) {
-        case isNaN(idade):
-          alert("Isso não é uma idade");
+        case isNaN(idade) || idade <= 0:
+          alert("Isso não é uma idade valida");
           break;
         case idade < 18:
           alert("Você é menor de idade");
