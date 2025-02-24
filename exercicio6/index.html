@@ -3,22 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Exercicio 6</title>
+    <title>Exercicio 7</title>
   </head>
   <body>
-    <h1>Exercicio 6</h1>
+    <h1>Exercicio 7</h1>
     <script>
-      const idade = parseInt(prompt("Digite sua idade"));
-      switch (true) {
-        case isNaN(idade) || idade <= 0:
-          alert("Isso não é uma idade valida");
-          break;
-        case idade < 18:
-          alert("Você é menor de idade");
-          break;
-        default:
-          alert("Você é maior de idade");
+      function main() {
+        const n1 = parseFloat(prompt("Nota 1"));
+        const n2 = parseFloat(prompt("Nota 2"));
+        const n3 = parseFloat(prompt("Nota 3"));
+        if (isNaN(n1) || isNaN(n2) || isNaN(n3)) {
+          alert("Numeros invalidos");
+          return;
+        }
+
+        alert(`Media é: ${(n1 + n2 + n3) / 3}`);
       }
+      main()
     </script>
   </body>
 </html>

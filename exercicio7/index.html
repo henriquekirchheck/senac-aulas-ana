@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercicio 6</title>
+  </head>
+  <body>
+    <h1>Exercicio 6</h1>
+    <script>
+      const idade = parseInt(prompt("Digite sua idade"));
+      switch (true) {
+        case isNaN(idade) || idade <= 0:
+          alert("Isso não é uma idade valida");
+          break;
+        case idade < 18:
+          alert("Você é menor de idade");
+          break;
+        default:
+          alert("Você é maior de idade");
+      }
+    </script>
+  </body>
+</html>
