@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercicio 8</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <article>
+        <header><h1>Exercicio 8</h1></header>
+        <form onsubmit="calcular(event)">
+          <label>
+            Digite o primeiro numero:
+            <input type="number" id="n1" required />
+          </label>
+          <label>
+            Digite o segundo numero:
+            <input type="number" id="n2" required />
+          </label>
+          <button type="submit">Calcular</button>
+        </form>
+      </article>
+      <article id="show-result" style="display: none">
+        <p>O resultado soma é: <span id="result-sum"></span></p>
+        <p>O resultado subtração é: <span id="result-sub"></span></p>
+        <p>O resultado multiplicação é: <span id="result-mul"></span></p>
+        <p>O resultado divisão é: <span id="result-div"></span></p>
+      </article>
+    </div>
+
+    <script>
+      const n1 = /** @type {HTMLInputElement} */ (
+        document.querySelector("#n1")
+      );
+      const n2 = /** @type {HTMLInputElement} */ (
+        document.querySelector("#n2")
+      );
+      const resultCard = /** @type {HTMLElement} */ (
+        document.querySelector("#show-result")
+      );
+      const resultSum = /** @type {HTMLSpanElement}*/ (
+        document.querySelector("#result-sum")
+      );
+      const resultSub = /** @type {HTMLSpanElement}*/ (
+        document.querySelector("#result-sub")
+      );
+      const resultMul = /** @type {HTMLSpanElement}*/ (
+        document.querySelector("#result-mul")
+      );
+      const resultDiv = /** @type {HTMLSpanElement}*/ (
+        document.querySelector("#result-div")
+      );
+      /**
+       * @param {InputEvent} event
+       */
+      function calcular(event) {
+        event.preventDefault();
+        resultCard.style.display = "block"
+        const v1 = n1.valueAsNumber;
+        const v2 = n2.valueAsNumber;
+        resultSum.innerText = v1 + v2;
+        resultSub.innerText = v1 - v2;
+        resultMul.innerText = v1 * v2;
+        const div = v1 / v2;
+        resultDiv.innerText =
+          !isNaN(div) && isFinite(div) ? div : "Divisão por zero";
+      }
+    </script>
+  </body>
+</html>

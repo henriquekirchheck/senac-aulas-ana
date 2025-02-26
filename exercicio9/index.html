@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercicio 9</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <article>
+        <header><h1>Exercicio 9</h1></header>
+        <form onsubmit="calcular(event)">
+          <label>
+            Digite o nome:
+            <input type="text" id="name" required />
+          </label>
+          <label>
+            Digite a idade:
+            <input type="number" id="age" min="0" required />
+          </label>
+          <label>
+            Apresentou Carteirinha?:
+            <input type="checkbox" id="card"  />
+          </label>
+          <button type="submit">Calcular</button>
+        </form>
+      </article>
+      <article id="show-result" style="display: none">
+        <p>O resultado soma é: <span id="result"></span></p>
+      </article>
+    </div>
+
+    <script>
+      const nameEl = /** @type {HTMLInputElement} */ (
+        document.querySelector("#name")
+      );
+      const ageEl = /** @type {HTMLInputElement} */ (
+        document.querySelector("#age")
+      );
+      const cardEl = /** @type {HTMLInputElement} */ (
+        document.querySelector("#card")
+      );
+      const resultCard = /** @type {HTMLElement} */ (
+        document.querySelector("#show-result")
+      );
+      const result = /** @type {HTMLSpanElement}*/ (
+        document.querySelector("#result")
+      );
+      /**
+       * @param {InputEvent} event
+       */
+      function calcular(event) {
+        event.preventDefault();
+        resultCard.style.display = "block";
+
+        const nameVal = nameEl.value;
+        const ageVal = ageEl.valueAsNumber;
+        const cardVal = cardEl.checked;
+
+        let value = 0;
+        switch (true) {
+          case ageVal >= 60:
+            value = 10;
+            break;
+          case ageVal > 50:
+            value = 15;
+            break;
+          case ageVal >= 10:
+            value = 20;
+            break;
+          default:
+            value = 50;
+            break;
+        }
+
+        value = value * (cardVal ? 0.5 : 1);
+
+        result.textContent = `${nameVal} deverá pagar R$${value.toFixed(2)}`;
+      }
+    </script>
+  </body>
+</html>
