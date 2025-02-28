@@ -1,7 +1,6 @@
 <script lang="ts">
-  import IMaskSvelte from "@imask/svelte";
-  import IMask, { type FactoryArg,  } from "imask";
-  import { onMount } from "svelte";
+  import IMask, { type InputMask, type FactoryArg,  } from "imask";
+  import { onDestroy, onMount, tick } from "svelte";
   import type { HTMLInputAttributes } from "svelte/elements";
   let {
     imask,
@@ -13,11 +12,14 @@
     unmask?: "typed" | "untyped";
   } = $props();
 
-  let maskRef: IMask;
+  let maskRef: InputMask<FactoryArg> | undefined;
   let input: HTMLInputElement;
-
+  // https://svelte.dev/playground/b590cddb69f4452b8f7704bd1e721e76?version=5.20.5
   $effect(() => {
-    if (maskRef)
+    if (maskRef) {
+        writeValue(value);
+        tick().then(() => value = getValue());
+    }
   });
 
   onMount(() => {
@@ -25,20 +27,30 @@
     setValue(value)
   })
 
+  onDestroy(() => {
+    if (maskRef) maskRef.destroy();
+    maskRef = undefined;
+  });
+
   function getValue() {
+    if (!maskRef) return;
     if (unmask === "typed") return maskRef.typedValue;
     if (unmask) return maskRef.unmaskedValue;
     return maskRef.value;
   }
 
-  function setValue(v) {
+  function setValue(v:string) {
+    if (!maskRef) return;
+
     v = v == null ? "" : v;
     if (unmask === "typed") maskRef.typedValue = v;
     else if (unmask) maskRef.unmaskedValue = v;
     else maskRef.value = v;
   }
 
-  function writeValue(v) {
+  function writeValue(v:string) {
+    if (!maskRef) return;
+
     if (
       getValue() !== v ||
       // handle cases like Number('') === 0,
@@ -50,4 +62,4 @@
   }
 </script>
 
-<input {...props} bind:this={input}/>
+<input {...props} bind:this={input} />
